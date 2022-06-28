@@ -22,6 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: rgb(30, 27, 27);
+  border: 2px solid white;
 }
 
 .App-link {
@@ -35,4 +36,44 @@
   to {
     transform: rotate(360deg);
   }
+}
+/* Recipe Box*/
+/* .recipePic {
+  display: block;
+} */
+
+
+#btn1 {
+  background-color: rgb(255, 254, 254);
+  color: rgb(176, 148, 112);
+margin-left: 5%;
+  padding: 10px 10px;
+  font-size: 20px; 
+  font-weight: bold;
+  border: 3px solid rgb(176, 148, 112);
+  border-radius: 6px;
+  margin-top: 2%;
+  
+}
+
+#btn2 {
+  background-color: rgb(251, 250, 249);
+  color: rgb(176, 148, 112);
+  padding: 10px 10px;
+  font-size: 20px; 
+  margin-left: 5%;
+  font-weight: bold;
+  border: 3px solid rgb(176, 148, 112);
+  border-radius: 6px;
+}
+
+#btn3 {
+  background-color: rgb(251, 250, 249);
+  color: rgb(176, 148, 112);
+  padding: 10px 10px;
+  font-size: 20px; 
+  margin-left: 5%;
+  font-weight: bold;
+  border: 3px solid rgb(176, 148, 112);
+  border-radius: 6px;
 }

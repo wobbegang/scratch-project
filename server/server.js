@@ -2,7 +2,11 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const apiRouter = require('./routes/api');
-const PORT = 3000;
+const PORT = 8080;
+
+const cors = require('cors');
+
+app.use(cors());
 
 //parse body of request
 app.use(express.json());
@@ -11,7 +15,8 @@ app.use(express.urlencoded({ extended: false }));  // change to false?
 //route handler
 app.use('/api', apiRouter)
 
-app.use(express.static(path.resolve(__dirname, '../dist')));
+// app.use(express.static(path.resolve(__dirname, '../src')));
+app.use(express.static(path.resolve(__dirname, './build/static')));
 
 app.use((req,res) => res.sendStatus(404));
 

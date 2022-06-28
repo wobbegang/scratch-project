@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
 // connect the controller .. require
+
 const mealController = require('../controllers/mealController');
+
+//get
+router.get('/review',mealController.getReview, (req, res) => {
+ return res.status(200).json(res.locals.getReview);
+})
 
 //post
 router.post('/userRecipes', mealController.createRecipe, (req,res) =>{
@@ -16,7 +22,6 @@ router.post('/review', mealController.postReview, (req, res) =>{
 router.patch('/review/:id', mealController.updateReview,  (req,res) => {
     return res.status(200).json(res.locals.updatedReview)
 })
-
 
 //delete
 

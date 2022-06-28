@@ -26,8 +26,8 @@ const UserRecipe = mongoose.model('userRecipe', recipeSchema);
 const reviewSchema = new Schema({
   strReview: { type: String, required: true },
   strUsername: { type: String, required: true },
-  Rating: { type: Number, required: true },
-  RecipeId: { type: Number, required: true },
+  rating: { type: String, required: true },
+  recipeId: { type: Number, required: true },
 });
 
 const UserReview = mongoose.model('userReview', reviewSchema);

@@ -1,20 +1,18 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import {
-  BrowserRouter,
-  Router,
   Routes,
   Route,
   Link,
-  Switch,
 } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
 import Recipe from "./Recipe";
 import Main from "./Main.js";
+import UserRecipe from "./UserRecipe.js"
 
 function App() {
   const [meal, setMeal] = useState("");
-  const [country, setCountry] = useState("");
+  const [country] = useState("");
 
   // const url = 'https://themealdb.com/api/json/v1/1/random.php?a=Croatian';
 
@@ -28,6 +26,7 @@ function App() {
   // }
 
   const url = `https://themealdb.com/api/json/v1/1/random.php`;
+  // const url = 'https://themealdb.com/api/json/v1/1/lookup.php?i=52772';
   console.log(country);
 
   //function to fetch data from MealDB
@@ -190,11 +189,12 @@ function App() {
   }
   return (
     <div className="App">
-      <p>blah blah blah food dofjakjndfcikjabefkjbawefjh</p>
+      {/* <p>blah blah blah food dofjakjndfcikjabefkjbawefjh</p> */}
       <Link to='/'>
-          <button onClick={recipePage}>Get Random Culture</button>
+          <button id='btn1' onClick={recipePage}>Get Random Culture</button>
       </Link>
-      <Link to='/recipe'><button>Get Recipe from this Culture!</button></Link>
+      <Link to='/recipe'><button id='btn2'>Get Recipe from this Culture</button></Link>
+      <Link to='/userrecipe'><button id='btn3'>Write recipe</button></Link>
       <Routes>
         <Route path="/" element={<Main recipePage={recipePage} meal={meal} info={info}/>}/>
           {/* <header className="App-header">
@@ -215,6 +215,7 @@ function App() {
           </div>
           </>} */}
         <Route path="/recipe" element={<Recipe meal={meal} />} />
+        <Route path="/userrecipe" element={<UserRecipe />} />
         {/* <Recipe /> */}
       </Routes>
     </div>

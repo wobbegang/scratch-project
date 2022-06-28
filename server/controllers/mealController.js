@@ -23,14 +23,15 @@ mealController.createRecipe = async (req, res, next) => {
 };
 
 mealController.postReview = async (req, res, next) => {
-  const { strReview, strUsername, Rating, RecipeId } = req.body;
+  console.log('review received')
+  const { strReview, strUsername, rating, recipeId } = req.body;
 
   try {
     const data = await Meal.UserReview.create({
       strReview,
       strUsername,
-      Rating,
-      RecipeId,
+      rating,
+      recipeId,
     });
     console.log(data);
     res.locals.userReview = data;
@@ -42,14 +43,27 @@ mealController.postReview = async (req, res, next) => {
   }
 };
 
+mealController.getReview = async(req,res,next) =>{
+  try{
+    const data = await Meal.UserReview.find({});
+    res.locals.getReview = data;
+    next();
+  }catch(err){
+    next({
+      message:err,
+    });
+  }
+
+};
+
 mealController.updateReview = async (req, res, next) => {
   const { id } = req.params;
-  const { strReview, Rating } = req.body;
+  const { strReview, strUsername, rating,} = req.body;
 
   try {
     const data = await Meal.UserReview.findByIdAndUpdate(
       id,
-      { strReview: strReview, Rating: Rating }
+      { strReview: strReview, strUsername: strUsername, rating: rating }
     );
     res.locals.updatedReview = data;
     next();
@@ -73,77 +87,5 @@ mealController.deleteReview = async (req, res, next) => {
     });
    }
   }
-
-
-// mealController.randomArea = (req, res, next) => {
-//   const area = [
-//     'American',
-//     'British',
-//     'Canadian',
-//     'Chinese',
-//     'Croatian',
-//     'Dutch',
-//     'Egyptian',
-//     'French',
-//     'Greek',
-//     'Indian',
-//     'Irish',
-//     'Italian',
-//     'Jamaican',
-//     'Japanese',
-//     'Kenyan',
-//     'Malaysian',
-//     'Mexican',
-//     'Moroccan',
-//     'Polish',
-//     'Portuguese',
-//     'Russian',
-//     'Spanish',
-//     'Thai',
-//     'Tunisian',
-//     'Turkish',
-//     'Unknown',
-//     'Vietnamese',
-//   ];
-//   let num = Math.floor(Math.random() * (27 - 0) + 0);
-//   console.log(num);
-//   let result = area[num];
-//   const url = `https://themealdb.com/api/json/v1/1/filter.php?a=${result}`;
-//   console.log(url);
-//   fetch(url)
-//     .then((data) => data.json())
-//     .then((data) => {
-//       res.locals.recipe = data;
-//       return next();
-//     })
-//     .catch((err) =>
-//       next({
-//         log: 'filterByarea',
-//         message: {
-//           err: err,
-//           ERROR: 'Check log for details',
-//         },
-//       })
-//     );
-// };
-
-// mealController.randomRecipe = (req, res, next) => {
-//   const url = 'https://themealdb.com/api/json/v1/1/random.php';
-//   fetch(url)
-//     .then((data) => data.json())
-//     .then((data) => {
-//       res.locals.recipe = data;
-//       return next();
-//     })
-//     .catch((err) =>
-//       next({
-//         log: 'randomRecipe',
-//         message: {
-//           err: err,
-//           ERROR: 'Check log for details',
-//         },
-//       })
-//     );
-// };
 
 module.exports = mealController;
